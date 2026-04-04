@@ -1,0 +1,20 @@
+{
+    "name": "yourname/blog-pegpem-oop",
+    "description": "A simple blog application using OOP principles.",
+    "type": "project",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "vlucas/phpdotenv": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Router\\": "router/",
+            "Controllers\\": "controllers/",
+            "Resources\\": "resources/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
