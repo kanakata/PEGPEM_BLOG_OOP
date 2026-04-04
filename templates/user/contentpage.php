@@ -684,7 +684,6 @@ $content = $blog_data['blog'];
 
         <div class="contentholder">
             <div class="holder2">
-                <!-- loop over content -->
                 <h1 id="content1title"><?php echo htmlspecialchars($content['content1title']) ?></h1>
                 <p id="content1"><?php echo htmlspecialchars($content['content1']) ?></p>
                 <h2 id=""><?php echo htmlspecialchars($content['content2title']) ?></h2>
