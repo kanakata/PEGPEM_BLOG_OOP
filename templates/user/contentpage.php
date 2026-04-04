@@ -544,6 +544,92 @@ $content = $blog_data['blog'];
         text-transform: capitalize;
         color: black;
     }
+
+    /* Mobile and Tablet Styles */
+    @media screen and (max-width: 768px) {
+
+        /* 1. Adjust Navbar */
+        nav {
+            padding: 0 15px;
+        }
+
+        nav .join,
+        nav .links {
+            display: none;
+            /* Hide complex desktop menus */
+        }
+
+        nav .menu_display {
+            display: block;
+            /* Show a hamburger menu icon if you have one */
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        nav h2 {
+            font-size: 22px;
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        /* 2. Stack the Top Display Section */
+        .top_display {
+            flex-direction: column;
+            height: auto;
+            /* Let content dictate height on mobile */
+            padding-bottom: 40px;
+        }
+
+        .top_display img {
+            flex: none;
+            width: 100%;
+            height: 300px;
+            /* Fixed height for mobile hero image */
+            object-fit: cover;
+        }
+
+        .top_display .top_display_cnt {
+            flex: none;
+            width: 100%;
+            gap: 15px;
+        }
+
+        /* 3. Adjust Content Holder */
+        .contentholder {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contentholder .holder2 {
+            width: 95%;
+            border-left: none;
+            /* Remove side border on mobile */
+            border-top: 1px solid orangered;
+            padding: 20px 0;
+        }
+
+        /* 4. Footer Adjustments */
+        .footer-col {
+            flex: 100%;
+            /* Make footer columns stack full width */
+            text-align: center;
+        }
+
+        .footer-col h4::after {
+            left: 50%;
+            transform: translateX(-50%);
+            /* Center the underline decoration */
+        }
+
+        .newsletter-form {
+            justify-content: center;
+        }
+
+        .footer-bottom {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
     </style>
 
 
