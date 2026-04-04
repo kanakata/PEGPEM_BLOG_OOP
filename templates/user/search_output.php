@@ -34,81 +34,99 @@ $stmt->close();
 
 ?>
 <?php require_once "header.php" ?>
-    <style>
-        /* --- Simple Styling for Pagination Links (You should move this to style.css) --- */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            padding: 20px 0;
-            margin-top: 0px;
+<style>
+/* --- Simple Styling for Pagination Links (You should move this to style.css) --- */
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    margin-top: 0px;
+}
+
+.pagination a {
+    color: orangered;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    border-radius: 4px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #f2f2f2;
+    border: 1px solid orangered;
+}
+
+.pagination a.active {
+    background-color: orangered;
+    /* Active page color */
+    color: white;
+    border: 1px solid orangered;
+}
+
+.pagination a.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: #ccc;
+    border-color: 1px solid orangered;
+}
+
+.details table th,
+.searchoutput table th {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+.pagtop {
+    display: flex;
+    width: 100%;
+    padding-left: 10px;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+
+    & h2 {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-family: broadway;
+        text-transform: capitalize;
+        color: orangered;
+        font-size: 18px;
+
+        & span {
+            width: 100px;
+            height: 5px;
+            background: orangered;
         }
-        .pagination a {
-            color: orangered;
-            padding: 8px 16px;
-            text-decoration: none;
-            transition: background-color .3s;
-            border: 1px solid #ddd;
-            margin: 0 4px;
-            border-radius: 4px;
-        }
-        .pagination a:hover:not(.active) { 
-            background-color: #f2f2f2; 
-            border: 1px solid  orangered;
-        }
-        .pagination a.active {
-            background-color: orangered; /* Active page color */
-            color: white;
-            border: 1px solid  orangered;
-        }
-        .pagination a.disabled {
-            pointer-events: none;
-            cursor: default;
-            color: #ccc;
-            border-color: 1px solid orangered;
-        }
-        .details table th, .searchoutput table th {
-            background-color: #f0f0f0;
-            color: #333;
-        }
-        .pagtop{
-            display: flex;
-            width: 100%;
-            padding-left: 10px;
-            align-items: center;
-            justify-content: space-between;
-            padding-right: 10px;
-            & h2{
-                display: flex;
-                align-items: center;
-                gap: 5px;
-                font-family: broadway;
-                text-transform: capitalize;
-                color: orangered;
-                font-size: 18px;
-                & span{
-                    width: 100px;
-                    height: 5px;
-                    background: orangered;
-                }
+    }
+}
+
+@media (max-width: 700px) {
+    .pagtop {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        & h2 {
+            font-size: 15px;
+
+            & span {
+                width: 50px;
+                height: 2px
             }
         }
-        @media (max-width: 700px) {
-            .pagtop{
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                & h2{
-                    font-size: 15px;
-                    & span{
-                        width: 50px;
-                        height: 2px
-                    }
-                }
-            }
-        }
-    </style>
-    <style>
-        /* General Reset */
+    }
+}
+</style>
+<style>
+/* General Reset */
+@font-face {
+    font-family: 'broadway';
+    src: url("./fonts/BROADW.TTF") format(truetype);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -144,7 +162,8 @@ $stmt->close();
 }
 
 .footer-col h3.footer-logo span {
-    color: #ff4d4d; /* Brand accent color */
+    color: #ff4d4d;
+    /* Brand accent color */
 }
 
 .footer-col h4 {
@@ -256,16 +275,19 @@ $stmt->close();
     .footer-col {
         min-width: 100%;
     }
+
     .footer-bottom {
         flex-direction: column;
         text-align: center;
     }
+
     .bottom-links a {
         margin: 0 10px;
     }
 }
-    </style>
+</style>
 </head>
+
 <body>
 
 
@@ -280,27 +302,29 @@ $stmt->close();
         <img src="/icons/menu.png" alt="" class="menu_display">
     </nav> -->
 
-     <section class="categories_post">
+    <section class="categories_post">
 
-     <div class="pagtop">
+        <div class="pagtop">
 
-     <h2><span></span>showing results for : <?php echo $_GET['search'] ?><span></span></h2>
-     
-          <?php if ($pages_no > 1): ?>
-        <div class="pagination">
-            <?php
+            <h2><span></span>showing results for : <?php echo $_GET['search'] ?><span></span></h2>
+
+            <?php if ($pages_no > 1): ?>
+            <div class="pagination">
+                <?php
             // --- Previous Page Link Logic ---
             $prev_page = $page - 1;
             $prev_class = $page <= 1 ? 'disabled' : '';
             ?>
-            <a href="?page=<?php echo $prev_page; ?>&search=<?php echo $_GET['search']?>" class="<?php echo $prev_class; ?>">Previous</a>
+                <a href="?page=<?php echo $prev_page; ?>&search=<?php echo $_GET['search']?>"
+                    class="<?php echo $prev_class; ?>">Previous</a>
 
-            <?php
+                <?php
             // --- Page Number Links Logic ---
             for ($i = 1; $i <= $pages_no; $i++) {
                 $active_class = $i == $page ? 'active' : '';
                 ?>
-                <a href="?page=<?php echo $i ; ?>&search=<?php echo $_GET['search']?>" class="<?php echo $active_class; ?>"><?php echo $i; ?></a>
+                <a href="?page=<?php echo $i ; ?>&search=<?php echo $_GET['search']?>"
+                    class="<?php echo $active_class; ?>"><?php echo $i; ?></a>
                 <?php
             }
 
@@ -308,20 +332,21 @@ $stmt->close();
             $next_page = $page + 1;
             $next_class = $page >= $pages_no ? 'disabled' : '';
             ?>
-            <a href="?page=<?php echo $next_page; ?>&search=<?php echo $_GET['search']?>" class="<?php echo $next_class; ?>">Next</a>
+                <a href="?page=<?php echo $next_page; ?>&search=<?php echo $_GET['search']?>"
+                    class="<?php echo $next_class; ?>">Next</a>
+            </div>
+            <?php endif; ?>
         </div>
-        <?php endif; ?>
-     </div>
-
-        
 
 
-        
+
+
+
         <div class="contentholder2">
 
-            
 
-            
+
+
 
             <?php while($info= $result->fetch_assoc()){?>
 
@@ -334,7 +359,8 @@ $stmt->close();
 
                 <img src="../header images/<?php echo "{$info['blogImage']}"?>" alt="">
                 <div class="content">
-                    <h3><?php echo "{$info['author']}"?>.  <?php echo "{$info['date']}"?><span><?php echo "{$info['likes']}"?> likes</span></h3>
+                    <h3><?php echo "{$info['author']}"?>.
+                        <?php echo "{$info['date']}"?><span><?php echo "{$info['likes']}"?> likes</span></h3>
                     <h2 id="title"><?php echo "{$info['title']}"?></h2>
                     <p id="content"><?php echo "{$info['description']}"?></p>
                 </div>
@@ -345,38 +371,42 @@ $stmt->close();
 
 
 
-            <?php if ($pages_no > 1): ?>
+        <?php if ($pages_no > 1): ?>
         <div class="pagination">
             <?php
             // --- Previous Page Link Logic ---
             $prev_page = $page - 1;
             $prev_class = $page <= 1 ? 'disabled' : '';
             ?>
-            <a href="?page=<?php echo $prev_page; ?>&search=<?php echo $_GET['search']?>" class="<?php echo $prev_class; ?>">Previous</a>
+            <a href="?page=<?php echo $prev_page; ?>&search=<?php echo $_GET['search']?>"
+                class="<?php echo $prev_class; ?>">Previous</a>
 
             <?php
             // --- Page Number Links Logic ---
             for ($i = 1; $i <= $pages_no; $i++) {
                 $active_class = $i == $page ? 'active' : '';
                 ?>
-                <a href="?page=<?php echo $i ; ?>&search=<?php echo $_GET['search']?>" class="<?php echo $active_class; ?>"><?php echo $i; ?></a>
-                <?php
+            <a href="?page=<?php echo $i ; ?>&search=<?php echo $_GET['search']?>"
+                class="<?php echo $active_class; ?>"><?php echo $i; ?></a>
+            <?php
             }
 
             // --- Next Page Link Logic ---
             $next_page = $page + 1;
             $next_class = $page >= $pages_no ? 'disabled' : '';
             ?>
-            <a href="?page=<?php echo $next_page; ?>&search=<?php echo $_GET['search']?>" class="<?php echo $next_class; ?>">Next</a>
+            <a href="?page=<?php echo $next_page; ?>&search=<?php echo $_GET['search']?>"
+                class="<?php echo $next_class; ?>">Next</a>
         </div>
         <?php endif; ?>
     </section>
-   
+
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-col">
                 <h3 class="footer-logo">Pegpem<span>.</span></h3>
-                <p>Sharing insights on technology, lifestyle, and design. Follow our journey as we explore the digital world.</p>
+                <p>Sharing insights on technology, lifestyle, and design. Follow our journey as we explore the digital
+                    world.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
@@ -394,12 +424,14 @@ $stmt->close();
             <div class="footer-col">
                 <h4>Categories</h4>
                 <ul>
-                    
+
                     <?php while($info = $resultc->fetch_assoc()){ ?>
 
-                        <li><a href="more.php?categories&category=<?php echo "{$info['cartegory']}"?>"><?php echo "{$info['cartegory']}"?></a></li>
-                    
-                     <?php }?>
+                    <li><a
+                            href="more.php?categories&category=<?php echo "{$info['cartegory']}"?>"><?php echo "{$info['cartegory']}"?></a>
+                    </li>
+
+                    <?php }?>
 
                 </ul>
             </div>
@@ -422,77 +454,77 @@ $stmt->close();
             </div>
         </div>
     </footer>
-    
-<script>
 
-     function truncateTitles() {
-    // 1. Select all elements whose ID starts with "title"
-    const titleElements =  document.querySelectorAll("#title")
-    
-    // Define the maximum length and the replacement string
-    const maxLength = 35;
-    const replacement = '.....';
+    <script>
+    function truncateTitles() {
+        // 1. Select all elements whose ID starts with "title"
+        const titleElements = document.querySelectorAll("#title")
 
-    titleElements.forEach(element => {
-        // Get the current text content of the element
-        const originalText = element.textContent.trim();
+        // Define the maximum length and the replacement string
+        const maxLength = 35;
+        const replacement = '.....';
 
-        if (originalText.length > maxLength) {
-            // 2. Truncate the string to (maxLength - replacement.length)
-            // We subtract the replacement length so the resulting string + '.....' 
-            // is still very close to the 30 character limit.
-            const truncationPoint = maxLength - replacement.length;
-            
-            // 3. Create the new truncated string
-            const truncatedText = originalText.substring(0, truncationPoint) + replacement;
-            
-            // 4. Update the element's content
-            element.textContent = truncatedText;
+        titleElements.forEach(element => {
+            // Get the current text content of the element
+            const originalText = element.textContent.trim();
 
-            console.log(`Truncated: "${originalText}" to "${truncatedText}"`);
+            if (originalText.length > maxLength) {
+                // 2. Truncate the string to (maxLength - replacement.length)
+                // We subtract the replacement length so the resulting string + '.....' 
+                // is still very close to the 30 character limit.
+                const truncationPoint = maxLength - replacement.length;
 
-        } else {
-            console.log(`No change: "${originalText}"`);
-        }
-    });
+                // 3. Create the new truncated string
+                const truncatedText = originalText.substring(0, truncationPoint) + replacement;
+
+                // 4. Update the element's content
+                element.textContent = truncatedText;
+
+                console.log(`Truncated: "${originalText}" to "${truncatedText}"`);
+
+            } else {
+                console.log(`No change: "${originalText}"`);
+            }
+        });
     }
 
     truncateTitles();
 
-   function truncateContent() {
-    // 1. Select all elements whose ID starts with "title"
-    const contentElements =  document.querySelectorAll("#content")
-    console.log(contentElements)
-    
-    // Define the maximum length and the replacement string
-    const maxLength = 100;
-    const replacement = '.....';
+    function truncateContent() {
+        // 1. Select all elements whose ID starts with "title"
+        const contentElements = document.querySelectorAll("#content")
+        console.log(contentElements)
 
-    contentElements.forEach(element => {
-        // Get the current text content of the element
-        const originalText = element.textContent.trim();
+        // Define the maximum length and the replacement string
+        const maxLength = 100;
+        const replacement = '.....';
 
-        if (originalText.length > maxLength) {
-            // 2. Truncate the string to (maxLength - replacement.length)
-            // We subtract the replacement length so the resulting string + '.....' 
-            // is still very close to the 30 character limit.
-            const truncationPoint = maxLength - replacement.length;
-            
-            // 3. Create the new truncated string
-            const truncatedText = originalText.substring(0, truncationPoint) + replacement;
-            
-            // 4. Update the element's content
-            element.textContent = truncatedText;
+        contentElements.forEach(element => {
+            // Get the current text content of the element
+            const originalText = element.textContent.trim();
 
-            console.log(`Truncated: "${originalText}" to "${truncatedText}"`);
+            if (originalText.length > maxLength) {
+                // 2. Truncate the string to (maxLength - replacement.length)
+                // We subtract the replacement length so the resulting string + '.....' 
+                // is still very close to the 30 character limit.
+                const truncationPoint = maxLength - replacement.length;
 
-        } else {
-            console.log(`No change: "${originalText}"`);
-        }
-    });
+                // 3. Create the new truncated string
+                const truncatedText = originalText.substring(0, truncationPoint) + replacement;
+
+                // 4. Update the element's content
+                element.textContent = truncatedText;
+
+                console.log(`Truncated: "${originalText}" to "${truncatedText}"`);
+
+            } else {
+                console.log(`No change: "${originalText}"`);
+            }
+        });
     }
 
     truncateContent();
-</script>    
+    </script>
 </body>
+
 </html>

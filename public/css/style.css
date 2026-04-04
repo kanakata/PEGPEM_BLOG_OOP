@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'broadway';
+  src: url("./fonts/BROADW.TTF") format(truetype);
+}
 * {
   margin: 0px;
   padding: 0px;
@@ -99,7 +103,8 @@ nav .links {
     text-decoration: none;
     font-size: 18px;
     text-transform: capitalize;
-    font-family: broadway;
+    font-family: broadway
+;
     position: relative;
     z-index: 20;
   }
@@ -1682,7 +1687,8 @@ footer h2 {
     }
   }
   .section .contentholder1 h2 {
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .section .contentholder1 .categories .category h2 {
     text-align: center;
@@ -1709,7 +1715,8 @@ footer h2 {
     display: flex;
     justify-content: flex-start;
     color: orangered;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .section .contentholder1 .topposts .post {
     width: 100%;
@@ -1870,7 +1877,8 @@ footer h2 {
   }
   .section .contentholder2 .blogs .blog .content h3 span {
     color: orangered;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .section .contentholder2 .blogs .blog .content h2 {
     font-weight: lighter;
@@ -1901,7 +1909,8 @@ footer h2 {
     align-items: center;
     justify-content: center;
     color: white;
-    font-family: broadway;
+    font-family: broadway
+;
     text-decoration: none;
     text-transform: capitalize;
     transform: translate(-50%);
@@ -1957,7 +1966,8 @@ footer h2 {
     font-size: 20px;
     padding-bottom: 15px;
     color: orangered;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .signupheader .form .contentholder1 form h3 img {
     height: 40px;
@@ -1968,7 +1978,8 @@ footer h2 {
     padding-bottom: 10px;
     letter-spacing: 1px;
     font-weight: 800;
-    font-family: broadway;
+    font-family: broadway
+;
     display: flex;
     align-items: center;
     gap: 5px;
@@ -2015,7 +2026,8 @@ footer h2 {
     gap: 5px;
     font-weight: 300;
     padding-bottom: 20px;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .signupheader .form .contentholder1 form h5 span {
     height: 0.5px;
@@ -2033,7 +2045,8 @@ footer h2 {
     font-size: 15px;
     padding-left: 10px;
     border: 1.5px solid rgba(204, 216, 211, 0.626);
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .signupheader .form .contentholder1 form .email .rememberme {
     width: 100%;
@@ -2070,7 +2083,8 @@ footer h2 {
     text-transform: capitalize;
     color: orangered;
     font-weight: 600;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .signupheader .form .contentholder1 form .email input[type='submit'] {
     width: 100%;
@@ -2097,7 +2111,8 @@ footer h2 {
     font-size: 15px;
     color: orangered;
     letter-spacing: 0;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .signupheader .form .contentholder2 {
     width: 50%;
@@ -2135,7 +2150,8 @@ footer h2 {
     text-align: center;
     text-transform: none;
     color: white;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .signupheader .form .contentholder2 .slider .item .content p {
     font-size: 15px;
@@ -2143,7 +2159,8 @@ footer h2 {
     text-align: center;
     color: white;
     cursor: pointer;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .signupheader .form .contentholder2 .paginations {
     width: 100%;
@@ -2185,7 +2202,8 @@ footer h2 {
     cursor: pointer;
     position: relative;
     z-index: 10;
-    font-family: broadway;
+    font-family: broadway
+;
   }
 
   .morecategory {
@@ -2302,7 +2320,8 @@ footer h2 {
     text-align: left;
     font-size: 14px;
     padding-bottom: 10px;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .section1 .contentholder .holder3 .detail h2 {
     display: flex;
@@ -2314,7 +2333,8 @@ footer h2 {
   .section1 .contentholder .holder3 .details h2 span {
     color: rgba(204, 216, 211, 0.626);
     text-transform: lowercase;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .section1 .contentholder .holder3 .authormessage {
     width: 100%;
@@ -2323,7 +2343,8 @@ footer h2 {
     padding: 15px;
     display: flex;
     flex-direction: column;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .section1 .contentholder .holder3 .authormessage h2 {
     text-align: left;
@@ -2331,7 +2352,8 @@ footer h2 {
     background: none;
     height: 0;
     text-align: none;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .section1 .contentholder .holder3 .authormessage .details {
     display: flex;
@@ -2340,7 +2362,8 @@ footer h2 {
     align-items: center;
     background: transparent;
     gap: 10px;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .section1 .contentholder .holder3 .authormessage .details img {
     height: 50px;
@@ -2351,7 +2374,8 @@ footer h2 {
     font-size: 10px;
     color: black;
     text-transform: lowercase;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .section1 .contentholder .holder3 .authormessage .message {
     width: 100%;
@@ -2396,7 +2420,8 @@ footer h2 {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-family: broadway;
+    font-family: broadway
+;
     color: orangered;
   }
   .categories_post .contentholder2 h2 span {
@@ -2452,7 +2477,8 @@ footer h2 {
   }
   .categories_post .contentholder2 .blog .content h3 span {
     color: orangered;
-    font-family: broadway;
+    font-family: broadway
+;
   }
   .categories_post .contentholder2 .blog .content h2 {
     font-weight: bolder;
@@ -2500,7 +2526,8 @@ footer h2 {
     width: 150px;
     border-radius: 5px;
     font-size: 18px;
-    font-family: broadway;
+    font-family: broadway
+;
     background: orangered;
     color: white;
     text-decoration: none;
@@ -2517,7 +2544,8 @@ footer h2 {
   .categories_post .category_paginations .category_pagination a {
     color: orangered;
     font-size: 18px;
-    font-family: broadway;
+    font-family: broadway
+;
     text-decoration: none;
     height: 40px;
     background: orangered;

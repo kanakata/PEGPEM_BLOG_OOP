@@ -15,6 +15,11 @@ $content = $blog_data['blog'];
     <link rel="shortcut icon" href="./assets/icons/blog-solid-full.svg" type="image/x-icon">
     <style>
     /* General Reset */
+    @font-face {
+        font-family: 'broadway';
+        src: url("./fonts/BROADW.TTF") format(truetype);
+    }
+
     * {
         margin: 0;
         padding: 0;
