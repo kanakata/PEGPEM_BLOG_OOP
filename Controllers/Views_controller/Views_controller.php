@@ -43,4 +43,10 @@ class Views_controller extends Query
     public static function User_dashboard_controller(){
         return parent::User_dashboard_query();
     }
+    public static function Search_controller(){
+        if(isset($_GET['search'])){
+            $inquiry = $_GET['search'];
+            return parent::Search_query($inquiry);
+        }
+    }
 }

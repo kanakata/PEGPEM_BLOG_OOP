@@ -3,7 +3,8 @@
     <div class="footer-container">
         <div class="footer-col">
             <h3 class="footer-logo">PeGPeM<span>.</span></h3>
-            <p>Sharing insights on technology, lifestyle, and design. Follow our journey as we explore the digital world.</p>
+            <p>Sharing insights on technology, lifestyle, and design. Follow our journey as we explore the digital
+                world.</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook-f"></i></a>
                 <a href="#"><i class="fab fa-twitter"></i></a>
@@ -24,7 +25,9 @@
             <h4>Categories</h4>
             <ul>
                 <?php foreach ($footer as $info): ?>
-                    <li><a href="?p=more&v=category&category=<?= htmlspecialchars($info['cartegory']) ?>"><?php echo htmlspecialchars($info['cartegory']) ?></a></li>
+                <li><a
+                        href="?p=more&v=category&category=<?= htmlspecialchars($info['cartegory']) ?>"><?php echo htmlspecialchars($info['cartegory']) ?></a>
+                </li>
                 <?php endforeach ?>
             </ul>
         </div>
@@ -47,8 +50,9 @@
         </div>
     </div>
 </footer>
-<script src="./public/js/file.js"></script>
+<script src="./public/js/file.js" type="text/javascript" defer></script>
 <script src="./public/js/typewriter.js" type="text/javascript" defer></script>
-</body> 
+<script src="./public/js/truncate.js" type="text/javascript" defer></script>
+</body>
 
 </html>

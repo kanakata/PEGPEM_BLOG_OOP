@@ -1,35 +1,6 @@
 <?php
 
 include '../bk_end/db_connect.php';
-   $input = $_GET['search'];
-
-   $page = $_GET['page'] ?? 1;
-   $search_term = "%" . $input . "%";
-
-   $sql = "SELECT COUNT(*) FROM blogs  WHERE title LIKE ? OR author LIKE ? OR description LIKE ? OR cartegory LIKE ? OR content1title LIKE ?  OR content2title LIKE ?  OR content3title LIKE ? OR content4title LIKE ? OR content5title LIKE ?";
-   $sql = $db_connect->prepare($sql);
-   $sql->bind_param("sssssssss", $search_term, $search_term, $search_term, $search_term, $search_term, $search_term, $search_term, $search_term, $search_term);
-   $sql->execute();
-   $total = $sql->get_result()->fetch_array()[0];
-   $sql->close();
-
-   $result_per_page = 8;
-   $pages_no = ceil($total / $result_per_page); 
-   $offset = ($page - 1) * $result_per_page ?? 0;
-   
-
-   $stmt = "SELECT * FROM blogs  WHERE title LIKE ? OR author LIKE ? OR description LIKE ? OR cartegory LIKE ? OR content1title LIKE ?  OR content2title LIKE ?  OR content3title LIKE ? OR content4title LIKE ? OR content5title LIKE ? ORDER BY date DESC LIMIT $offset, $result_per_page";
-   $stmt = $db_connect->prepare($stmt);
-   $stmt->bind_param("sssssssss", $search_term, $search_term, $search_term, $search_term, $search_term, $search_term, $search_term, $search_term, $search_term);
-   $stmt->execute();
-   $result = $stmt->get_result();
-   $stmt->close();
-
-   $stmt = "SELECT DISTINCT cartegory FROM blogs ";
-$stmt = $db_connect->prepare($stmt);
-$stmt->execute();
-$resultc = $stmt->get_result();
-$stmt->close();
 
 
 ?>
@@ -302,104 +273,7 @@ $stmt->close();
         <img src="/icons/menu.png" alt="" class="menu_display">
     </nav> -->
 
-    <section class="categories_post">
 
-        <div class="pagtop">
-
-            <h2><span></span>showing results for : <?php echo $_GET['search'] ?><span></span></h2>
-
-            <?php if ($pages_no > 1): ?>
-            <div class="pagination">
-                <?php
-            // --- Previous Page Link Logic ---
-            $prev_page = $page - 1;
-            $prev_class = $page <= 1 ? 'disabled' : '';
-            ?>
-                <a href="?page=<?php echo $prev_page; ?>&search=<?php echo $_GET['search']?>"
-                    class="<?php echo $prev_class; ?>">Previous</a>
-
-                <?php
-            // --- Page Number Links Logic ---
-            for ($i = 1; $i <= $pages_no; $i++) {
-                $active_class = $i == $page ? 'active' : '';
-                ?>
-                <a href="?page=<?php echo $i ; ?>&search=<?php echo $_GET['search']?>"
-                    class="<?php echo $active_class; ?>"><?php echo $i; ?></a>
-                <?php
-            }
-
-            // --- Next Page Link Logic ---
-            $next_page = $page + 1;
-            $next_class = $page >= $pages_no ? 'disabled' : '';
-            ?>
-                <a href="?page=<?php echo $next_page; ?>&search=<?php echo $_GET['search']?>"
-                    class="<?php echo $next_class; ?>">Next</a>
-            </div>
-            <?php endif; ?>
-        </div>
-
-
-
-
-
-        <div class="contentholder2">
-
-
-
-
-
-            <?php while($info= $result->fetch_assoc()){?>
-
-
-            <!-- search link -->
-            <a href="contentpage.php?id=<?php echo "{$info['id']}" ?>" class="blog">
-
-
-
-
-                <img src="../header images/<?php echo "{$info['blogImage']}"?>" alt="">
-                <div class="content">
-                    <h3><?php echo "{$info['author']}"?>.
-                        <?php echo "{$info['date']}"?><span><?php echo "{$info['likes']}"?> likes</span></h3>
-                    <h2 id="title"><?php echo "{$info['title']}"?></h2>
-                    <p id="content"><?php echo "{$info['description']}"?></p>
-                </div>
-            </a>
-            <?php }?>
-
-        </div>
-
-
-
-        <?php if ($pages_no > 1): ?>
-        <div class="pagination">
-            <?php
-            // --- Previous Page Link Logic ---
-            $prev_page = $page - 1;
-            $prev_class = $page <= 1 ? 'disabled' : '';
-            ?>
-            <a href="?page=<?php echo $prev_page; ?>&search=<?php echo $_GET['search']?>"
-                class="<?php echo $prev_class; ?>">Previous</a>
-
-            <?php
-            // --- Page Number Links Logic ---
-            for ($i = 1; $i <= $pages_no; $i++) {
-                $active_class = $i == $page ? 'active' : '';
-                ?>
-            <a href="?page=<?php echo $i ; ?>&search=<?php echo $_GET['search']?>"
-                class="<?php echo $active_class; ?>"><?php echo $i; ?></a>
-            <?php
-            }
-
-            // --- Next Page Link Logic ---
-            $next_page = $page + 1;
-            $next_class = $page >= $pages_no ? 'disabled' : '';
-            ?>
-            <a href="?page=<?php echo $next_page; ?>&search=<?php echo $_GET['search']?>"
-                class="<?php echo $next_class; ?>">Next</a>
-        </div>
-        <?php endif; ?>
-    </section>
 
     <footer class="footer">
         <div class="footer-container">

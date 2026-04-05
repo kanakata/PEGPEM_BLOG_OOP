@@ -498,22 +498,7 @@ $content = $blog_data['blog'];
     }
 
     /* Responsive adjustment */
-    @media (max-width: 768px) {
-        .footer-col {
-            min-width: 100%;
-        }
-
-        .footer-bottom {
-            flex-direction: column;
-            text-align: center;
-        }
-
-        .bottom-links a {
-            margin: 0 10px;
-        }
-    }
-
-    .del {
+    del {
         position: absolute;
         top: 20px;
         width: 100%;
@@ -548,28 +533,89 @@ $content = $blog_data['blog'];
     /* Mobile and Tablet Styles */
     @media screen and (max-width: 768px) {
 
-        /* 1. Adjust Navbar */
         nav {
-            padding: 0 15px;
+            width: 100%;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            z-index: 20;
+            top: 0;
+            background: orangered;
         }
 
-        nav .join,
+        .navbar.hide {
+            transform: translateY(-70px);
+            transition: 2s;
+        }
+
+        nav .join {
+            display: none;
+        }
+
         nav .links {
             display: none;
-            /* Hide complex desktop menus */
-        }
-
-        nav .menu_display {
-            display: block;
-            /* Show a hamburger menu icon if you have one */
-            font-size: 25px;
-            cursor: pointer;
         }
 
         nav h2 {
-            font-size: 22px;
-            flex: 1;
+            align-items: center;
             justify-content: flex-start;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+            gap: 5px;
+        }
+
+        nav h2 img {
+            height: 40px;
+            width: 40px;
+        }
+
+        nav .links_ss {
+            display: none;
+        }
+
+        nav .links_ss.show {
+            height: 100vh;
+            width: 100%;
+            position: absolute;
+            top: 75px;
+            background: orangered;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 10px;
+
+            & a {
+                display: flex;
+                color: black;
+                text-transform: capitalize;
+                text-decoration: none;
+                font-size: 18px;
+                border-bottom: 1px solid black;
+                width: 100%;
+                padding-bottom: 2px;
+
+                & img {
+                    height: 30px;
+                    width: 30px;
+                }
+            }
+        }
+
+        nav .menu_display {
+            height: 40px;
+            width: 40px;
+            padding-right: 10px;
+            display: block;
+        }
+
+        nav .menu_close {
+            height: 40px;
+            width: 40px;
+            padding-right: 10px;
+            display: none;
         }
 
         /* 2. Stack the Top Display Section */
@@ -608,26 +654,17 @@ $content = $blog_data['blog'];
             padding: 20px 0;
         }
 
-        /* 4. Footer Adjustments */
         .footer-col {
-            flex: 100%;
-            /* Make footer columns stack full width */
-            text-align: center;
-        }
-
-        .footer-col h4::after {
-            left: 50%;
-            transform: translateX(-50%);
-            /* Center the underline decoration */
-        }
-
-        .newsletter-form {
-            justify-content: center;
+            min-width: 100%;
         }
 
         .footer-bottom {
             flex-direction: column;
             text-align: center;
+        }
+
+        .bottom-links a {
+            margin: 0 10px;
         }
     }
     </style>
@@ -658,8 +695,8 @@ $content = $blog_data['blog'];
             <a href="?p=userdash"><img src="./assets/icons/icons8-dashboard-48.png" alt="">dash</a>
         </div>
         <div class="links_ss">
-            <a href="logout.php"><img src="./assets/icons/arrow-right-to-bracket-solid-full.svg" alt="">log out</a>
-            <a href="userdash.php"><img src="./assets/icons/icons8-dashboard-48.png" alt="">my dash</a>
+            <a href="?p=signin"><img src="./assets/icons/arrow-right-to-bracket-solid-full.svg" alt="">log out</a>
+            <a href="?p=userdash"><img src="./assets/icons/icons8-dashboard-48.png" alt="">my dash</a>
             <a href="#"><img src="./assets/icons/facebook-brands-solid-full.svg" alt=""></a>
             <a href="#"><img src="./assets/icons/instagram-brands-solid-full (1).svg" alt=""></a>
             <a href="#"><img src="./assets/icons/twitter-brands-solid-full.svg" alt=""></a>
@@ -682,8 +719,8 @@ $content = $blog_data['blog'];
             <a href="#"><img src="./assets/icons/youtube-brands-solid-full.svg" alt=""></a>
         </div>
         <div class="links_ss">
-            <a href="/signup">sign up</a>
-            <a href="/login">log in</a>
+            <a href="?p=register">sign up</a>
+            <a href="?p=signin">log in</a>
             <a href="#"><img src="./assets/icons/facebook-brands-solid-full.svg" alt=""></a>
             <a href="#"><img src="./assets/icons/instagram-brands-solid-full (1).svg" alt=""></a>
             <a href="#"><img src="./assets/icons/twitter-brands-solid-full.svg" alt=""></a>

@@ -362,7 +362,8 @@ $landingData = Views_controller::General_view_controller();
                 <img src="./assets/images/<?php echo htmlspecialchars($info['blogImage']) ?>" alt="">
                 <div class="content">
                     <h3><?php echo htmlspecialchars($info['author']) ?>. <?php echo htmlspecialchars($info['date']) ?>
-                        <span><?php echo htmlspecialchars($info['likes']) ?> likes 👍</span></h3>
+                        <span><?php echo htmlspecialchars($info['likes']) ?> likes 👍</span>
+                    </h3>
                     <h2 id="title"><?php echo htmlspecialchars($info['title']) ?></h2>
                     <p id="content"><?php echo htmlspecialchars($info['description']) ?></p>
                     <h2>category : <?php echo htmlspecialchars($info['cartegory']) ?></h2>

@@ -501,7 +501,6 @@ abstract class Query extends Database
             "all_comments"     => $stmt_list->fetchAll(PDO::FETCH_ASSOC),
         ];
     }
-
     private static function handle_actions($id, $author, $username)
     {
         // Handle Like (Now via POST for safety)
@@ -518,5 +517,59 @@ abstract class Query extends Database
             $sql = "INSERT INTO comments_and_likes (blogid, author, username, comment) VALUES (?, ?, ?, ?)";
             self::$db_connect->prepare($sql)->execute([$id, $author, $username, $content]);
         }
+    }
+    protected static function Search_query($search_query){
+        self::$db_connect = parent::db_connect("blogsitedb");
+        $input = $search_query;
+
+        $page = $_GET['page'] ?? 1;
+        $search_term = "%" . $input . "%";
+     
+        $sql = "SELECT COUNT(*) FROM blogs  WHERE title LIKE ? OR author LIKE ? OR description LIKE ? OR cartegory LIKE ? OR content1title LIKE ?  OR content2title LIKE ?  OR content3title LIKE ? OR content4title LIKE ? OR content5title LIKE ?";
+        $sql = self::$db_connect->prepare($sql);
+        $sql->bindParam(1, $search_term);
+        $sql->bindParam(2, $search_term);
+        $sql->bindParam(3, $search_term);
+        $sql->bindParam(4, $search_term);
+        $sql->bindParam(5, $search_term);
+        $sql->bindParam(6, $search_term);
+        $sql->bindParam(7, $search_term);
+        $sql->bindParam(8, $search_term);
+        $sql->bindParam(9, $search_term);
+        $sql->execute();
+        $total = $sql->fetchColumn();
+        unset($sql);
+     
+        $result_per_page = 8;
+        $pages_no = ceil($total / $result_per_page); 
+        $offset = ($page - 1) * $result_per_page ?? 0;
+        
+     
+        $stmt = "SELECT * FROM blogs  WHERE title LIKE ? OR author LIKE ? OR description LIKE ? OR cartegory LIKE ? OR content1title LIKE ?  OR content2title LIKE ?  OR content3title LIKE ? OR content4title LIKE ? OR content5title LIKE ? ORDER BY date DESC LIMIT $offset, $result_per_page";
+        $sql = self::$db_connect->prepare($stmt);
+        $sql->bindParam(1, $search_term);
+        $sql->bindParam(2, $search_term);
+        $sql->bindParam(3, $search_term);
+        $sql->bindParam(4, $search_term);
+        $sql->bindParam(5, $search_term);
+        $sql->bindParam(6, $search_term);
+        $sql->bindParam(7, $search_term);
+        $sql->bindParam(8, $search_term);
+        $sql->bindParam(9, $search_term);
+        $sql->execute();
+        $search_result = $sql->fetchAll(PDO::FETCH_ASSOC);
+        unset($sql);
+     
+        // $stmt = "SELECT DISTINCT cartegory FROM blogs ";
+        // $stmt = $db_connect->prepare($stmt);
+        // $stmt->execute();
+        // $resultc = $stmt->get_result();
+        // $stmt->close();
+
+        return [
+            "search_output" => $search_result,
+            "pages_no" => $pages_no,
+            "page" => $page,
+        ];
     }
 }

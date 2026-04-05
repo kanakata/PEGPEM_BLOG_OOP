@@ -20,4 +20,3 @@ class Api_controller extends Auth
         return parent::Like_comment();
     }
 }
-
